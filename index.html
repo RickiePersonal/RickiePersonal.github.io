@@ -32,6 +32,40 @@
             line-height: 1.6;
         }
         
+        /* Welcome Animation Styles */
+        .welcome-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 2rem 3rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            animation: fadeInOut 3s forwards;
+            display: none;
+        }
+        
+        .welcome-popup h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .welcome-popup p {
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -60%); }
+            15% { opacity: 1; transform: translate(-50%, -50%); }
+            85% { opacity: 1; transform: translate(-50%, -50%); }
+            100% { opacity: 0; transform: translate(-50%, -40%); }
+        }
+        
         header {
             background-color: var(--primary);
             color: var(--text-light);
@@ -416,10 +450,29 @@
                 left: 20px;
                 right: auto;
             }
+            
+            .welcome-popup {
+                width: 90%;
+                padding: 1.5rem;
+            }
+            
+            .welcome-popup h2 {
+                font-size: 1.5rem;
+            }
+            
+            .welcome-popup p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Welcome Popup -->
+    <div class="welcome-popup" id="welcomePopup">
+        <h2>Welcome to My Portfolio!</h2>
+        <p>Thank you for visiting</p>
+    </div>
+    
     <header>
         <div class="container">
             <div class="header-content">
@@ -643,5 +696,23 @@
             </div>
         </div>
     </footer>
+    
+    <script>
+        // Welcome popup animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const welcomePopup = document.getElementById('welcomePopup');
+            
+            // Show the popup when the page loads
+            welcomePopup.style.display = 'block';
+            
+            // Hide the popup after 3 seconds
+            setTimeout(function() {
+                // After animation completes, set display to none
+                setTimeout(function() {
+                    welcomePopup.style.display = 'none';
+                }, 3000);
+            }, 100);
+        });
+    </script>
 </body>
 </html>
