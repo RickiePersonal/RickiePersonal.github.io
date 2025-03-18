@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jane Smith - Data Science Portfolio</title>
+    <style>
+        /* Color Scheme - Purple and Yellow Complementary Colors */
+        :root {
+            --primary: #5e35b1;
+            --primary-light: #7e57c2;
+            --primary-dark: #4527a0;
+            --accent: #ffd54f;
+            --accent-light: #ffecb3;
+            --accent-dark: #ffca28;
+            --text-light: #f5f5f5;
+            --text-dark: #333333;
+            --background: #f9f9f9;
+            --card-bg: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header-content h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--accent);
+        }
+        
+        .contact-info {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .contact-info a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-info a:hover {
+            color: var(--accent);
+        }
+        
+        nav {
+            background-color: var(--primary-dark);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        section {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-light);
+            padding-bottom: 0.5rem;
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .skill-list li::before {
+            content: "•";
+            color: var(--accent-dark);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-card-header {
+            background-color: var(--primary-light);
+            color: var(--text-light);
+            padding: 1rem;
+        }
+        
+        .project-card-body {
+            padding: 1.5rem;
+        }
+        
+        .project-card-body ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .project-card-body li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .project-card-body li::before {
+            content: "→";
+            color: var(--accent-dark);
+            position: absolute;
+            left: 0;
+        }
+        
+        .technologies {
+            margin-top: 1rem;
+            font-style: italic;
+            color: var(--primary);
+        }
+        
+        .experience-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary-light);
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 1rem 0;
+            position: relative;
+            width: 50%;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 40px;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 40px;
+        }
+        
+        .timeline-content {
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-content .date {
+            color: var(--accent-dark);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-item:nth-child(odd)::after,
+        .timeline-item:nth-child(even)::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            top: 20px;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: 30px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: 30px;
+        }
+        
+        .education-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .education-container h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .education-container .institution {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .education-container .date {
+            color: var(--accent-dark);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .certifications-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        
+        .certification-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .certification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .certification-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-light);
+            padding-bottom: 0.5rem;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .experience-timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd)::after,
+            .timeline-item:nth-child(even)::after {
+                left: 20px;
+                right: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Jane Smith</h1>
+                <h2>Data Science Student</h2>
+                <div class="contact-info">
+                    <a href="mailto:jane.smith@email.com">jane.smith@email.com</a>
+                    <a href="tel:+15551234567">(555) 123-4567</a>
+                    <a href="https://linkedin.com/in/janesmith" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/janesmith" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <img src="/api/placeholder/250/250" alt="Jane Smith" class="profile-img">
+                <div>
+                    <p>I am a passionate data science student at the University of Analytics, expected to graduate in May 2025. With a strong foundation in statistical analysis, machine learning, and data visualization, I am committed to extracting meaningful insights from complex datasets.</p>
+                    <p>My experience includes internships and research assistant roles where I've applied my analytical skills to real-world problems. I enjoy collaborating with cross-functional teams and presenting data-driven solutions to both technical and non-technical stakeholders.</p>
+                    <p>As the Vice President of the Data Science Club, I actively engage with the data science community and participate in hackathons and volunteer work to leverage data for social impact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills" style="background-color: #f0f0f0;">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li>Python (pandas, NumPy, scikit-learn, Matplotlib)</li>
+                        <li>R (tidyverse, ggplot2, dplyr)</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Tools</h3>
+                    <ul class="skill-list">
+                        <li>Tableau</li>
+                        <li>Power BI</li>
+                        <li>Excel</li>
+                        <li>Jupyter Notebooks</li>
+                        <li>Git</li>
+                        <li>Weka</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Databases</h3>
+                    <ul class="skill-list">
+                        <li>MySQL</li>
+                        <li>PostgreSQL</li>
+                        <li>MongoDB</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Analysis Techniques</h3>
+                    <ul class="skill-list">
+                        <li>Data Cleaning</li>
+                        <li>Statistical Modeling</li>
+                        <li>Regression Analysis</li>
+                        <li>A/B Testing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <h3>Customer Segmentation Analysis</h3>
+                    </div>
+                    <div class="project-card-body">
+                        <ul>
+                            <li>Applied k-means clustering to segment 10,000+ customers based on purchasing behavior</li>
+                            <li>Identified four distinct customer groups and developed targeted marketing strategies</li>
+                            <li>Created interactive dashboards to visualize findings for non-technical stakeholders</li>
+                        </ul>
+                        <p class="technologies">Technologies: Python, scikit-learn</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <h3>COVID-19 Data Analysis</h3>
+                    </div>
+                    <div class="project-card-body">
+                        <ul>
+                            <li>Analyzed public health data to track COVID-19 spread patterns across different regions</li>
+                            <li>Built time-series models to predict infection rates with 85% accuracy</li>
+                            <li>Published findings on GitHub with comprehensive documentation</li>
+                        </ul>
+                        <p class="technologies">Technologies: R, ggplot2</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <h3>Sales Database Design and Analysis</h3>
+                    </div>
+                    <div class="project-card-body">
+                        <ul>
+                            <li>Designed a relational database schema for a retail business</li>
+                            <li>Wrote complex queries to analyze sales trends and inventory management</li>
+                            <li>Created stored procedures to automate weekly reporting processes</li>
+                        </ul>
+                        <p class="technologies">Technologies: SQL, MySQL</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="experience" style="background-color: #f0f0f0;">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="experience-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Data Analytics Intern</h3>
+                        <p>Insight Analytics Solutions</p>
+                        <p class="date">Summer 2024</p>
+                        <ul>
+                            <li>Assisted in cleaning and preprocessing customer data for a major retail client</li>
+                            <li>Contributed to the development of a churn prediction model that improved retention by 12%</li>
+                            <li>Created weekly reports and visualizations for the marketing team</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Research Assistant</h3>
+                        <p>University of Analytics</p>
+                        <p class="date">Sept 2023 - Present</p>
+                        <ul>
+                            <li>Collaborate with professors on research projects involving large datasets</li>
+                            <li>Develop scripts to automate data collection and preprocessing</li>
+                            <li>Present findings at department seminars and contribute to research papers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-container">
+                <h3>Bachelor of Science in Data Science</h3>
+                <p class="institution">University of Analytics</p>
+                <p class="date">Expected Graduation: May 2025</p>
+                <p><strong>GPA:</strong> 3.8/4.0</p>
+                <p><strong>Relevant Coursework:</strong></p>
+                <ul>
+                    <li>Statistical Analysis</li>
+                    <li>Machine Learning</li>
+                    <li>Data Visualization</li>
+                    <li>Database Systems</li>
+                    <li>Big Data Analytics</li>
+                </ul>
+                <p><strong>Leadership & Activities:</strong></p>
+                <ul>
+                    <li>Vice President, Data Science Club</li>
+                    <li>Volunteer, DataKind (helped non-profits leverage data for social impact)</li>
+                    <li>Participant, Hackathon for Social Good (2nd place)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section id="certifications" style="background-color: #f0f0f0;">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certifications-container">
+                <div class="certification-card">
+                    <h3>Google Data Analytics Professional Certificate</h3>
+                    <p>Completed comprehensive data analytics program covering the entire data analysis process.</p>
+                </div>
+                <div class="certification-card">
+                    <h3>DataCamp Python Data Science Track</h3>
+                    <p>Mastered Python libraries and techniques for data manipulation, visualization, and machine learning.</p>
+                </div>
+                <div class="certification-card">
+                    <h3>SQL for Data Science (Coursera)</h3>
+                    <p>Developed advanced SQL skills for complex data extraction and analysis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>© 2025 Jane Smith. All Rights Reserved.</p>
+                <div class="social-links">
+                    <a href="mailto:jane.smith@email.com">Email</a>
+                    <a href="https://linkedin.com/in/janesmith" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/janesmith" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
